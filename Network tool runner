@@ -1,0 +1,21 @@
+// File: NetworkToolRunner.java
+// Runs installed command-line tools and saves output to tool_report.txt.
+import java.io.*;
+public class NetworkToolRunner {
+public static void main(String[] args) throws Exception {
+String[][] tools = {{"ping","-c","4","8.8.8.8"},{"netstat","-an"}};
+PrintWriter report = new PrintWriter(new
+FileWriter("tool_report.txt"));
+for(String[] cmd: tools){
+	report.println("===== " + cmd[0].toUpperCase() + " =====");
+	try{
+	Process p = new
+	ProcessBuilder(cmd).redirectErrorStream(true).start();
+	new BufferedReader(new
+	InputStreamReader(p.getInputStream())).lines().forEach(report::println);
+	} catch(Exception e){ report.println("Could not run " + cmd[0] +
+	": " + e.getMessage()); }
+	}
+	report.close(); System.out.println("Report saved.");
+	}
+	}
