@@ -1,0 +1,11 @@
+// File: RelativeUrlResolver.java
+import java.net.*; import java.util.Scanner;
+public class RelativeUrlResolver {
+public static void main(String[] args) throws Exception{
+Scanner sc=new Scanner(System.in);
+System.out.print("Base URL: "); URL base=new URL(sc.nextLine().trim());
+System.out.print("Relative URL: "); String rel=sc.nextLine().trim();
+URL absolute=new URL(base, rel); // Resolves relative URL against base URL.
+System.out.println("Absolute URL: "+absolute);
+}
+}
