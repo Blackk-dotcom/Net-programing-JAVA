@@ -1,0 +1,16 @@
+// File: ProxyFailureHandling.java
+import java.util.*;
+public class ProxyFailureHandling {
+public static void main(String[] args){
+Scanner sc=new Scanner(System.in); System.out.print("Proxy host: ");
+String host=sc.nextLine().trim(); System.out.print("Proxy port: "); int
+port=Integer.parseInt(sc.nextLine()); System.out.print("URL: "); String
+url=sc.nextLine().trim();
+if(host.isEmpty()) System.out.println("Error: proxy host cannot be empty");
+else if(port<=0 || port>65535) System.out.println("Error: invalid port");
+else if(!(url.startsWith("http://") || url.startsWith("https://")))
+System.out.println("Error: invalid URL");
+else if(url.contains("blockedsite.com")) System.out.println("Error: blocked website");
+else System.out.println("Proxy settings accepted");
+}
+}
