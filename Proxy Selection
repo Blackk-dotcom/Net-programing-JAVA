@@ -1,0 +1,16 @@
+// File: ProxySelection.java
+import java.net.*; import java.util.*;
+public class ProxySelection {
+public static void main(String[] args) throws Exception{
+Set<String> local=Set.of("localhost","127.0.0.1","jkuat.ac.ke");
+Set<String> blocked=Set.of("blockedsite.com","malware.example");
+Scanner sc=new Scanner(System.in); System.out.print("URL: "); URI
+uri=new URI(sc.nextLine().trim()); String host=uri.getHost();
+if(host==null) System.out.println("Invalid URL");
+else if(blocked.stream().anyMatch(host::contains))
+System.out.println("Decision: Access denied");
+else if(local.contains(host) || host.endsWith(".local"))
+System.out.println("Decision: Direct connection");
+else System.out.println("Decision: Use proxy");
+}
+}
