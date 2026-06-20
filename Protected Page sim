@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class ProtectedPageSimulation {
+    public static void main(String[] args){
+        // Java 8 compatible map initialization
+        Map<String, String> users = new HashMap<>();
+        users.put("admin", "admin123");
+        users.put("student", "net2026");
+        users.put("lecturer", "teach456");
+while(true){
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Username: ");
+        String u = sc.nextLine(); 
+        System.out.print("Password: "); 
+        String p = sc.nextLine();
+
+        if(users.containsKey(u) && users.get(u).equals(p)){
+            System.out.println("Welcome. Resources: Lecture notes, Lab exercises, Assignments");
+        break;
+        }else
+            System.out.println("Access denied.");
+}    
+}
+}
