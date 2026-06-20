@@ -1,0 +1,14 @@
+// File: SimpleAuthenticator.java
+import java.util.*;
+public class SimpleAuthenticator {
+public static void main(String[] args){
+Map<String,String> users=new HashMap<>();
+users.put("admin","admin123"); users.put("student","net2026");
+users.put("lecturer","teach456");
+Scanner sc=new Scanner(System.in); System.out.print("Username: ");
+String u=sc.nextLine(); System.out.print("Password: "); String
+p=sc.nextLine();
+System.out.println(users.containsKey(u) && users.get(u).equals(p) ?
+"Authentication successful" : "Authentication failed");
+}
+}
