@@ -1,0 +1,24 @@
+// File: TcpUdpCompareJava.java
+// Run: java TcpUdpCompareJava tcpserver | tcpclient | udpserver | udpclient
+import java.io.*; import java.net.*;
+public class TcpUdpCompareJava {
+public static void main(String[] args) throws Exception {
+String mode = args.length>0?args[0]:"tcpclient";
+if(mode.equals("tcpserver")){ ServerSocket ss=new ServerSocket(6000);
+Socket s=ss.accept(); BufferedReader in=new BufferedReader(new
+InputStreamReader(s.getInputStream())); PrintWriter out=new
+PrintWriter(s.getOutputStream(),true); System.out.println(in.readLine());
+out.println("TCP ACK: reliable connection"); s.close(); }
+else if(mode.equals("tcpclient")){ Socket s=new
+Socket("127.0.0.1",6000); PrintWriter out=new
+PrintWriter(s.getOutputStream(),true); BufferedReader in=new
+BufferedReader(new InputStreamReader(s.getInputStream())); out.println("Hello through TCP"); System.out.println(in.readLine()); s.close(); }
+		else if(mode.equals("udpserver")){ DatagramSocket ds=new DatagramSocket(6001); byte[] buf=new byte[1024]; DatagramPacket p=new DatagramPacket(buf,buf.length); ds.receive(p); System.out.println(new String(p.getData(),0,p.getLength())); byte[] r="UDP ACK: datagram		received".getBytes(); ds.send(new
+		DatagramPacket(r,r.length,p.getAddress(),p.getPort())); }
+		else { DatagramSocket ds=new DatagramSocket(); byte[] msg="Hello through UDP".getBytes(); ds.send(new
+		DatagramPacket(msg,msg.length,InetAddress.getByName("127.0.0.1"),6001));
+		byte[] buf=new byte[1024]; DatagramPacket p=new
+		DatagramPacket(buf,buf.length); ds.receive(p); System.out.println(new
+		String(p.getData(),0,p.getLength())); }
+		}
+		}
