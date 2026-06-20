@@ -1,0 +1,18 @@
+// File: ReachabilityReport.java
+import java.io.*; import java.net.*; import java.util.*;
+public class ReachabilityReport {
+public static void main(String[] args) throws Exception{
+Scanner sc =new Scanner(System.in); PrintWriter report=new PrintWriter("reachability_report.txt");
+while(true){
+System.out.print("Host: "); String host=sc.nextLine().trim();
+if(host.isEmpty()) break;
+long start=System.currentTimeMillis(); boolean ok=false; String
+ip="";
+try{ InetAddress a=InetAddress.getByName(host);
+ip=a.getHostAddress(); ok=a.isReachable(2000); } catch(Exception e){ ip="not resolved"; }
+long elapsed=System.currentTimeMillis()-start;
+report.println("Host: "+host+"\nIP: "+ip+"\nStatus:"+(ok?"Reachable":"Unreachable")+"\nResponse time: "+elapsed+" ms\n");
+}
+report.close(); System.out.println("Report saved.");
+}
+}
