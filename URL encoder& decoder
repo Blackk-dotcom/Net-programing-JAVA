@@ -1,0 +1,18 @@
+// File: UrlEncoderDecoder.java
+import java.net.*;
+import java.util.Scanner;
+
+public class UrlEncoderDecoder {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Text: "); 
+        String text = sc.nextLine();
+        
+        // Pass "UTF-8" as a String instead of StandardCharsets.UTF_8
+        String encoded = URLEncoder.encode(text, "UTF-8");
+        String decoded = URLDecoder.decode(encoded, "UTF-8");
+        
+        System.out.println("Encoded: " + encoded); 
+        System.out.println("Decoded: " + decoded);
+    }
+}
