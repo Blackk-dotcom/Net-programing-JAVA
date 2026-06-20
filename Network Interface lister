@@ -1,0 +1,18 @@
+// File: NetworkInterfaceLister.java
+import java.net.*; import java.util.*;
+public class NetworkInterfaceLister {
+public static void main(String[] args) throws Exception {
+Enumeration<NetworkInterface> interfaces =
+NetworkInterface.getNetworkInterfaces();
+while(interfaces.hasMoreElements()){
+NetworkInterface ni = interfaces.nextElement();
+System.out.println("Interface: " + ni.getName());
+System.out.println("Display: " + ni.getDisplayName());
+System.out.println("Active: " + ni.isUp());
+System.out.println("Multicast: " + ni.supportsMulticast());
+Enumeration<InetAddress> addrs = ni.getInetAddresses();
+while(addrs.hasMoreElements()) System.out.println("IP: " +
+addrs.nextElement().getHostAddress());
+}
+}
+}
