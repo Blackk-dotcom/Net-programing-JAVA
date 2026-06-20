@@ -1,0 +1,22 @@
+// File: LocalHostInfo.java
+import java.net.*; import java.util.*;
+public class LocalHostInfo {
+public static void main(String[] args) throws Exception {
+InetAddress local = InetAddress.getLocalHost();
+System.out.println("Local host: " + local.getHostName());
+System.out.println("Local IP: " + local.getHostAddress());
+Enumeration<NetworkInterface> interfaces =
+NetworkInterface.getNetworkInterfaces();
+while(interfaces.hasMoreElements()){
+NetworkInterface ni = interfaces.nextElement();
+System.out.println("\nInterface: " + ni.getName() + " - " +
+ni.getDisplayName());
+byte[] mac = ni.getHardwareAddress();
+if(mac != null){ for(byte b: mac) System.out.printf("%02X:", b);
+System.out.println(); }
+Enumeration<InetAddress> addrs = ni.getInetAddresses();
+while(addrs.hasMoreElements()) System.out.println("Address: " +
+addrs.nextElement().getHostAddress());
+}
+}
+}
